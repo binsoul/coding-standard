@@ -22,7 +22,7 @@ $ composer require symplify/easy-coding-standard-prefixed --dev
 
 Check coding standard:
 ``` bash                 
-$ vendor/bin/ecs check src tests --config vendor/bin/binsoul/coding-standard/easy-coding-standard.yaml
+$ vendor/bin/ecs check src tests --config vendor/binsoul/coding-standard/easy-coding-standard.yaml
 ```  
 
 ## License

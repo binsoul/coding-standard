@@ -10,14 +10,14 @@ This package provides the coding standard for our projects.
 Via composer:
 
 ``` bash
-$ composer require binsoul/coding-standard
+$ composer require binsoul/coding-standard --dev
 ```               
 
 ## Usage
 
 Install easy coding standard:
 ``` bash                 
-$ composer require symplify/easy-coding-standard-prefixed
+$ composer require symplify/easy-coding-standard-prefixed --dev
 ```  
 
 Check coding standard:

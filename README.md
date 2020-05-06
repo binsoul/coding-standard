@@ -25,6 +25,21 @@ Check coding standard:
 $ vendor/bin/ecs check src tests --config vendor/binsoul/coding-standard/easy-coding-standard.yaml
 ```  
 
+Install GrumPHP:
+``` bash
+$ composer require phpro/grumphp-shim --dev
+```
+
+Add GrumPHP configuration to composer.json:
+``` json
+{
+    "extra": {
+        "grumphp": {
+            "config-default-path": "vendor/binsoul/coding-standard/grumphp.yaml"
+        }
+    }
+}
+```
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.

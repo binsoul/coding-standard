@@ -1,4 +1,5 @@
 parameters:
+    cache_directory: ".cache/ecs"
     indentation: "    "
     line_ending: "\n"
     sets:

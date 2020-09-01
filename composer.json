@@ -43,7 +43,7 @@
     },
     "scripts": {
         "test": "phpunit",
-        "fix-style": "ecs check src --config easy-coding-standard.php --fix -vvv",
+        "fix-style": "ecs check src --config easy-coding-standard.php --fix",
         "analyze": "phpstan analyse -l max src"
     },
     "extra": {

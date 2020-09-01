@@ -7,8 +7,6 @@ use PHP_CodeSniffer\Standards\Generic\Sniffs\CodeAnalysis\AssignmentInConditionS
 use PhpCsFixer\Fixer\Operator\IncrementStyleFixer;
 use PhpCsFixer\Fixer\Operator\NotOperatorWithSuccessorSpaceFixer;
 use PhpCsFixer\Fixer\Operator\UnaryOperatorSpacesFixer;
-use PhpCsFixer\Fixer\PhpUnit\PhpUnitMethodCasingFixer;
-use PhpCsFixer\Fixer\PhpUnit\PhpUnitStrictFixer;
 use PhpCsFixer\Fixer\Phpdoc\NoBlankLinesAfterPhpdocFixer;
 use PhpCsFixer\Fixer\Phpdoc\NoEmptyPhpdocFixer;
 use PhpCsFixer\Fixer\Phpdoc\PhpdocAlignFixer;
@@ -29,8 +27,11 @@ use PhpCsFixer\Fixer\Phpdoc\PhpdocToCommentFixer;
 use PhpCsFixer\Fixer\Phpdoc\PhpdocTrimFixer;
 use PhpCsFixer\Fixer\Phpdoc\PhpdocTypesFixer;
 use PhpCsFixer\Fixer\Phpdoc\PhpdocVarWithoutNameFixer;
+use PhpCsFixer\Fixer\PhpUnit\PhpUnitMethodCasingFixer;
+use PhpCsFixer\Fixer\PhpUnit\PhpUnitStrictFixer;
 use PhpCsFixer\Fixer\ReturnNotation\ReturnAssignmentFixer;
 use PhpCsFixer\Fixer\Whitespace\BlankLineBeforeStatementFixer;
+use PhpCsFixer\Fixer\Whitespace\NoExtraBlankLinesFixer;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symplify\EasyCodingStandard\Configuration\Option;
 use Symplify\EasyCodingStandard\ValueObject\Set\SetList;
@@ -57,7 +58,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
             AssignmentInConditionSniff::class => null,
             PhpUnitStrictFixer::class => null,
             ReturnAssignmentFixer::class => null,
-            UnaryOperatorSpacesFixer::class => null
+            UnaryOperatorSpacesFixer::class => null,
         ]
     );
 
@@ -90,6 +91,9 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 
     $services->set(BlankLineBeforeStatementFixer::class)
         ->call('configure', [['statements' => ['break', 'case', 'continue', 'do', 'for', 'foreach', 'if', 'return', 'switch', 'throw', 'try', 'while', 'yield']]]);
+
+    $services->set(NoExtraBlankLinesFixer::class)
+        ->call('configure', [['tokens' => ['break', 'case', 'continue', 'curly_brace_block', 'default', 'extra', 'parenthesis_brace_block', 'return', 'square_brace_block', 'switch', 'throw', 'use', 'use_trait']]]);
 
     $services->set(IncrementStyleFixer::class)
         ->call('configure', [['style' => 'post']]);

@@ -5,6 +5,8 @@ declare(strict_types=1);
 use BinSoul\CodingStandard\MultilineLambdaFunctionArgumentsFixer;
 use PHP_CodeSniffer\Standards\Generic\Sniffs\CodeAnalysis\AssignmentInConditionSniff;
 use PhpCsFixer\Fixer\Operator\IncrementStyleFixer;
+use PhpCsFixer\Fixer\Operator\NotOperatorWithSuccessorSpaceFixer;
+use PhpCsFixer\Fixer\Operator\UnaryOperatorSpacesFixer;
 use PhpCsFixer\Fixer\PhpUnit\PhpUnitMethodCasingFixer;
 use PhpCsFixer\Fixer\PhpUnit\PhpUnitStrictFixer;
 use PhpCsFixer\Fixer\Phpdoc\NoBlankLinesAfterPhpdocFixer;
@@ -49,7 +51,15 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         SetList::PSR_12,
     ]);
 
-    $parameters->set(Option::SKIP, [AssignmentInConditionSniff::class => null, PhpUnitStrictFixer::class => null, ReturnAssignmentFixer::class => null]);
+    $parameters->set(
+        Option::SKIP,
+        [
+            AssignmentInConditionSniff::class => null,
+            PhpUnitStrictFixer::class => null,
+            ReturnAssignmentFixer::class => null,
+            UnaryOperatorSpacesFixer::class => null
+        ]
+    );
 
     $services = $containerConfigurator->services();
 
@@ -83,6 +93,8 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 
     $services->set(IncrementStyleFixer::class)
         ->call('configure', [['style' => 'post']]);
+
+    $services->set(NotOperatorWithSuccessorSpaceFixer::class);
 
     $services->set(MultilineLambdaFunctionArgumentsFixer::class);
 };

@@ -2,7 +2,7 @@ grumphp:
     ascii: ~
     tasks:
         ecs:
-            config: vendor/binsoul/coding-standard/easy-coding-standard.yaml
+            config: vendor/binsoul/coding-standard/easy-coding-standard.php
             level: ~
             paths: ["src", "tests"]
             triggered_by: ["php"]

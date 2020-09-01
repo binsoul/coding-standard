@@ -3,13 +3,12 @@ parameters:
     indentation: "    "
     line_ending: "\n"
     sets:
-        - "php70"
-        - "php71"
+        - "php-70"
+        - "php-71"
         - "common"
-        - "types"
         - "clean-code"
         - "dead-code"
-        - "psr12"
+        - "psr-12"
     skip:
         # Allow assignments in conditions
         PHP_CodeSniffer\Standards\Generic\Sniffs\CodeAnalysis\AssignmentInConditionSniff: ~
@@ -24,13 +23,13 @@ services:
     #PHPDoc
     PhpCsFixer\Fixer\Phpdoc\PhpdocAlignFixer:
         tags:
-            - method
-            - param
-            - property
-            - return
-            - throws
-            - type
-            - var
+            - "method"
+            - "param"
+            - "property"
+            - "return"
+            - "throws"
+            - "type"
+            - "var"
     PhpCsFixer\Fixer\Phpdoc\NoBlankLinesAfterPhpdocFixer: ~
     PhpCsFixer\Fixer\Phpdoc\NoEmptyPhpdocFixer: ~
     PhpCsFixer\Fixer\Phpdoc\PhpdocSeparationFixer: ~

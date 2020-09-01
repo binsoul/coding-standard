@@ -1,10 +1,10 @@
-parameters:
+grumphp:
     ascii: ~
     tasks:
         ecs:
             config: vendor/binsoul/coding-standard/easy-coding-standard.yaml
             level: ~
-            whitelist_patterns: ["src", "tests"]
+            paths: ["src", "tests"]
             triggered_by: ["php"]
             clear-cache: false
             no-progress-bar: true

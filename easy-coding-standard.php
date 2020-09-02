@@ -81,7 +81,6 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $services->set(PhpdocScalarFixer::class);
     $services->set(PhpdocSingleLineVarSpacingFixer::class);
     $services->set(PhpdocSummaryFixer::class);
-    $services->set(PhpdocToCommentFixer::class);
     $services->set(PhpdocTrimFixer::class);
     $services->set(PhpdocTypesFixer::class);
     $services->set(PhpdocVarWithoutNameFixer::class);

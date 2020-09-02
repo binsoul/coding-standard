@@ -64,6 +64,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 
     $services = $containerConfigurator->services();
 
+    // PHPDoc
     $services->set(PhpdocAlignFixer::class)
         ->call('configure', [['tags' => ['method', 'param', 'property', 'return', 'throws', 'type', 'var']]]);
 
@@ -85,9 +86,12 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $services->set(PhpdocTypesFixer::class);
     $services->set(PhpdocVarWithoutNameFixer::class);
     $services->set(PhpdocNoAliasTagFixer::class);
+
+    // PHPUnit
     $services->set(PhpUnitMethodCasingFixer::class)
         ->call('configure', [['case' => 'snake_case']]);
 
+    // Whitespace
     $services->set(BlankLineBeforeStatementFixer::class)
         ->call('configure', [['statements' => ['break', 'case', 'continue', 'do', 'for', 'foreach', 'if', 'return', 'switch', 'throw', 'try', 'while', 'yield']]]);
 
@@ -97,7 +101,9 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $services->set(IncrementStyleFixer::class)
         ->call('configure', [['style' => 'post']]);
 
+    // Operators
     $services->set(NotOperatorWithSuccessorSpaceFixer::class);
 
+    // Custom
     $services->set(MultilineLambdaFunctionArgumentsFixer::class);
 };

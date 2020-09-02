@@ -4,6 +4,10 @@ declare(strict_types=1);
 
 use BinSoul\CodingStandard\MultilineLambdaFunctionArgumentsFixer;
 use PHP_CodeSniffer\Standards\Generic\Sniffs\CodeAnalysis\AssignmentInConditionSniff;
+use PhpCsFixer\Fixer\Import\FullyQualifiedStrictTypesFixer;
+use PhpCsFixer\Fixer\Import\GlobalNamespaceImportFixer;
+use PhpCsFixer\Fixer\Import\NoUnusedImportsFixer;
+use PhpCsFixer\Fixer\Import\OrderedImportsFixer;
 use PhpCsFixer\Fixer\Operator\IncrementStyleFixer;
 use PhpCsFixer\Fixer\Operator\NotOperatorWithSuccessorSpaceFixer;
 use PhpCsFixer\Fixer\Operator\UnaryOperatorSpacesFixer;
@@ -103,6 +107,12 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 
     // Operators
     $services->set(NotOperatorWithSuccessorSpaceFixer::class);
+
+    // Import
+    $services->set(FullyQualifiedStrictTypesFixer::class);
+    $services->set(NoUnusedImportsFixer::class);
+    $services->set(OrderedImportsFixer::class);
+    $services->set(GlobalNamespaceImportFixer::class)->call('configure', [['import_classes' => true]]);
 
     // Custom
     $services->set(MultilineLambdaFunctionArgumentsFixer::class);

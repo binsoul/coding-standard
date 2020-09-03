@@ -10,6 +10,7 @@ use PhpCsFixer\FixerDefinition\FixerDefinition;
 use PhpCsFixer\Tokenizer\Analyzer\ArgumentsAnalyzer;
 use PhpCsFixer\Tokenizer\Token;
 use PhpCsFixer\Tokenizer\Tokens;
+use SplFileInfo;
 
 final class MultilineLambdaFunctionArgumentsFixer extends AbstractFixer
 {
@@ -44,7 +45,7 @@ $array = array_map(
         return -26;
     }
 
-    protected function applyFix(\SplFileInfo $file, Tokens $tokens): void
+    protected function applyFix(SplFileInfo $file, Tokens $tokens): void
     {
         for ($index = 1, $count = count($tokens); $index < $count; $index++) {
             if (! $tokens[$index]->isGivenKind(T_FUNCTION)) {

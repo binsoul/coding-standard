@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use BinSoul\CodingStandard\MultilineLambdaFunctionArgumentsFixer;
 use PHP_CodeSniffer\Standards\Generic\Sniffs\CodeAnalysis\AssignmentInConditionSniff;
+use PhpCsFixer\Fixer\ClassNotation\OrderedClassElementsFixer;
 use PhpCsFixer\Fixer\Import\FullyQualifiedStrictTypesFixer;
 use PhpCsFixer\Fixer\Import\GlobalNamespaceImportFixer;
 use PhpCsFixer\Fixer\Import\NoUnusedImportsFixer;
@@ -27,7 +28,6 @@ use PhpCsFixer\Fixer\Phpdoc\PhpdocScalarFixer;
 use PhpCsFixer\Fixer\Phpdoc\PhpdocSeparationFixer;
 use PhpCsFixer\Fixer\Phpdoc\PhpdocSingleLineVarSpacingFixer;
 use PhpCsFixer\Fixer\Phpdoc\PhpdocSummaryFixer;
-use PhpCsFixer\Fixer\Phpdoc\PhpdocToCommentFixer;
 use PhpCsFixer\Fixer\Phpdoc\PhpdocTrimFixer;
 use PhpCsFixer\Fixer\Phpdoc\PhpdocTypesFixer;
 use PhpCsFixer\Fixer\Phpdoc\PhpdocVarWithoutNameFixer;
@@ -113,6 +113,9 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $services->set(NoUnusedImportsFixer::class);
     $services->set(OrderedImportsFixer::class);
     $services->set(GlobalNamespaceImportFixer::class)->call('configure', [['import_classes' => true]]);
+
+    // Classes
+    $services->set(OrderedClassElementsFixer::class);
 
     // Custom
     $services->set(MultilineLambdaFunctionArgumentsFixer::class);

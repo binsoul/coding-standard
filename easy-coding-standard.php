@@ -14,6 +14,7 @@ use PhpCsFixer\Fixer\Operator\NotOperatorWithSuccessorSpaceFixer;
 use PhpCsFixer\Fixer\Operator\UnaryOperatorSpacesFixer;
 use PhpCsFixer\Fixer\Phpdoc\NoBlankLinesAfterPhpdocFixer;
 use PhpCsFixer\Fixer\Phpdoc\NoEmptyPhpdocFixer;
+use PhpCsFixer\Fixer\Phpdoc\NoSuperfluousPhpdocTagsFixer;
 use PhpCsFixer\Fixer\Phpdoc\PhpdocAlignFixer;
 use PhpCsFixer\Fixer\Phpdoc\PhpdocAnnotationWithoutDotFixer;
 use PhpCsFixer\Fixer\Phpdoc\PhpdocIndentFixer;
@@ -90,6 +91,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $services->set(PhpdocTypesFixer::class);
     $services->set(PhpdocVarWithoutNameFixer::class);
     $services->set(PhpdocNoAliasTagFixer::class);
+    $services->set(NoSuperfluousPhpdocTagsFixer::class);
 
     // PHPUnit
     $services->set(PhpUnitMethodCasingFixer::class)

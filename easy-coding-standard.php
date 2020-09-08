@@ -37,6 +37,7 @@ use PhpCsFixer\Fixer\PhpUnit\PhpUnitStrictFixer;
 use PhpCsFixer\Fixer\ReturnNotation\ReturnAssignmentFixer;
 use PhpCsFixer\Fixer\Whitespace\BlankLineBeforeStatementFixer;
 use PhpCsFixer\Fixer\Whitespace\NoExtraBlankLinesFixer;
+use SlevomatCodingStandard\Sniffs\Whitespaces\DuplicateSpacesSniff;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symplify\EasyCodingStandard\Configuration\Option;
 
@@ -109,6 +110,8 @@ return static function (ContainerConfigurator $containerConfigurator): void {
 
     $services->set(IncrementStyleFixer::class)
         ->call('configure', [['style' => 'post']]);
+
+    $services->set(DuplicateSpacesSniff::class)->property('ignoreSpacesInAnnotation', true);
 
     // Operators
     $services->set(NotOperatorWithSuccessorSpaceFixer::class);

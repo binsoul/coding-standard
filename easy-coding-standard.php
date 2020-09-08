@@ -56,6 +56,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
             'clean-code',
             'dead-code',
             'psr12',
+            'doctrine-annotations',
         ]
     );
 

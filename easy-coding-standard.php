@@ -39,7 +39,6 @@ use PhpCsFixer\Fixer\Whitespace\BlankLineBeforeStatementFixer;
 use PhpCsFixer\Fixer\Whitespace\NoExtraBlankLinesFixer;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symplify\EasyCodingStandard\Configuration\Option;
-use Symplify\EasyCodingStandard\ValueObject\Set\SetList;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
     $parameters = $containerConfigurator->parameters();
@@ -48,14 +47,17 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $parameters->set(Option::INDENTATION, '    ');
     $parameters->set(Option::LINE_ENDING, "\n");
 
-    $parameters->set(Option::SETS, [
-        SetList::PHP_70,
-        SetList::PHP_71,
-        SetList::COMMON,
-        SetList::CLEAN_CODE,
-        SetList::DEAD_CODE,
-        SetList::PSR_12,
-    ]);
+    $parameters->set(
+        Option::SETS,
+        [
+            'php70',
+            'php71',
+            'common',
+            'clean-code',
+            'dead-code',
+            'psr12',
+        ]
+    );
 
     $parameters->set(
         Option::SKIP,

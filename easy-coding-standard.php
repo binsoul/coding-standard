@@ -39,6 +39,7 @@ use PhpCsFixer\Fixer\Whitespace\BlankLineBeforeStatementFixer;
 use PhpCsFixer\Fixer\Whitespace\NoExtraBlankLinesFixer;
 use SlevomatCodingStandard\Sniffs\Whitespaces\DuplicateSpacesSniff;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+use Symplify\CodingStandard\Fixer\ArrayNotation\ArrayOpenerAndCloserNewlineFixer;
 use Symplify\EasyCodingStandard\Configuration\Option;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
@@ -112,6 +113,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ->call('configure', [['style' => 'post']]);
 
     $services->set(DuplicateSpacesSniff::class)->property('ignoreSpacesInAnnotation', true);
+    $services->set(ArrayOpenerAndCloserNewlineFixer::class);
 
     // Operators
     $services->set(NotOperatorWithSuccessorSpaceFixer::class);

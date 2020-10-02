@@ -69,6 +69,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
             PhpUnitStrictFixer::class => null,
             ReturnAssignmentFixer::class => null,
             UnaryOperatorSpacesFixer::class => null,
+            ArrayOpenerAndCloserNewlineFixer::class => null,
         ]
     );
 

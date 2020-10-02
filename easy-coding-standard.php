@@ -39,6 +39,7 @@ use PhpCsFixer\Fixer\Whitespace\BlankLineBeforeStatementFixer;
 use PhpCsFixer\Fixer\Whitespace\NoExtraBlankLinesFixer;
 use SlevomatCodingStandard\Sniffs\Whitespaces\DuplicateSpacesSniff;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+use Symplify\CodingStandard\Fixer\ArrayNotation\ArrayListItemNewlineFixer;
 use Symplify\CodingStandard\Fixer\ArrayNotation\ArrayOpenerAndCloserNewlineFixer;
 use Symplify\EasyCodingStandard\ValueObject\Option;
 
@@ -70,6 +71,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
             ReturnAssignmentFixer::class => null,
             UnaryOperatorSpacesFixer::class => null,
             ArrayOpenerAndCloserNewlineFixer::class => null,
+            ArrayListItemNewlineFixer::class => null,
         ]
     );
 

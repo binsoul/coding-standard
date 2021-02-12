@@ -53,11 +53,8 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $parameters->set(
         Option::SETS,
         [
-            'php70',
-            'php71',
             'common',
             'clean-code',
-            'dead-code',
             'psr12',
             'doctrine-annotations',
         ]

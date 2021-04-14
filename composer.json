@@ -11,10 +11,8 @@
             "role": "Developer"
         }
     ],
-    "require": {
-        "php": "^7.3 || ^8.0"
-    },
     "require-dev": {
+        "php": "^7.3 || ^8.0",
         "friendsofphp/php-cs-fixer": "^2",
         "phpro/grumphp-shim": "^1",
         "phpunit/phpunit": "^9",

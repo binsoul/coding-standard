@@ -1,11 +1,6 @@
 {
     "name": "binsoul/coding-standard",
     "description": "Coding standard",
-    "keywords": [
-        "net",
-        "hal",
-        "client"
-    ],
     "homepage": "https://github.com/binsoul/coding-standard",
     "license": "MIT",
     "authors": [

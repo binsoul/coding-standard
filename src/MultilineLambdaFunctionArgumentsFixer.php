@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace BinSoul\CodingStandard;
 
-use PhpCsFixer\AbstractFixer;
+use PhpCsFixer\Fixer\DefinedFixerInterface;
 use PhpCsFixer\FixerDefinition\CodeSample;
 use PhpCsFixer\FixerDefinition\FixerDefinition;
 use PhpCsFixer\Tokenizer\Analyzer\ArgumentsAnalyzer;
@@ -12,7 +12,7 @@ use PhpCsFixer\Tokenizer\Token;
 use PhpCsFixer\Tokenizer\Tokens;
 use SplFileInfo;
 
-final class MultilineLambdaFunctionArgumentsFixer extends AbstractFixer
+final class MultilineLambdaFunctionArgumentsFixer implements DefinedFixerInterface
 {
     public function getDefinition(): FixerDefinition
     {
@@ -34,6 +34,21 @@ $array = array_map(
         );
     }
 
+    public function getName(): string
+    {
+        return self::class;
+    }
+
+    public function isRisky(): bool
+    {
+        return false;
+    }
+
+    public function supports(SplFileInfo $file): bool
+    {
+        return true;
+    }
+
     public function isCandidate(Tokens $tokens): bool
     {
         return $tokens->isTokenKindFound(T_FUNCTION);
@@ -45,7 +60,7 @@ $array = array_map(
         return -26;
     }
 
-    protected function applyFix(SplFileInfo $file, Tokens $tokens): void
+    public function fix(SplFileInfo $file, Tokens $tokens): void
     {
         for ($index = 1, $count = count($tokens); $index < $count; $index++) {
             if (! $tokens[$index]->isGivenKind(T_FUNCTION)) {

@@ -44,8 +44,8 @@ Add GrumPHP configuration to composer.json:
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
 
-[ico-version]: https://img.shields.io/packagist/v/binsoul/net-hal-client.svg?style=flat-square
+[ico-version]: https://img.shields.io/packagist/v/binsoul/coding-standard.svg?style=flat-square
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
 
-[link-packagist]: https://packagist.org/packages/binsoul/net-hal-client
+[link-packagist]: https://packagist.org/packages/binsoul/coding-standard
 [link-author]: https://github.com/binsoul

@@ -13,7 +13,7 @@
     ],
     "require-dev": {
         "php": "^7.3 || ^8.0",
-        "friendsofphp/php-cs-fixer": "^2",
+        "friendsofphp/php-cs-fixer": "^2 || ^3",
         "phpro/grumphp-shim": "^1",
         "phpunit/phpunit": "^9",
         "phpstan/phpstan": "^0.12",

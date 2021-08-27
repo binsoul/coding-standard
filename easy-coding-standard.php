@@ -18,7 +18,7 @@ use PhpCsFixer\Fixer\Phpdoc\NoSuperfluousPhpdocTagsFixer;
 use PhpCsFixer\Fixer\Phpdoc\PhpdocAlignFixer;
 use PhpCsFixer\Fixer\Phpdoc\PhpdocAnnotationWithoutDotFixer;
 use PhpCsFixer\Fixer\Phpdoc\PhpdocIndentFixer;
-use PhpCsFixer\Fixer\Phpdoc\PhpdocInlineTagFixer;
+use PhpCsFixer\Fixer\Phpdoc\PhpdocInlineTagNormalizerFixer;
 use PhpCsFixer\Fixer\Phpdoc\PhpdocNoAccessFixer;
 use PhpCsFixer\Fixer\Phpdoc\PhpdocNoAliasTagFixer;
 use PhpCsFixer\Fixer\Phpdoc\PhpdocNoEmptyReturnFixer;
@@ -42,6 +42,7 @@ use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigura
 use Symplify\CodingStandard\Fixer\ArrayNotation\ArrayListItemNewlineFixer;
 use Symplify\CodingStandard\Fixer\ArrayNotation\ArrayOpenerAndCloserNewlineFixer;
 use Symplify\EasyCodingStandard\ValueObject\Option;
+use Symplify\EasyCodingStandard\ValueObject\Set\SetList;
 
 return static function (ContainerConfigurator $containerConfigurator): void {
     $parameters = $containerConfigurator->parameters();
@@ -50,15 +51,10 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $parameters->set(Option::INDENTATION, '    ');
     $parameters->set(Option::LINE_ENDING, "\n");
 
-    $parameters->set(
-        Option::SETS,
-        [
-            'common',
-            'clean-code',
-            'psr12',
-            'doctrine-annotations',
-        ]
-    );
+    $containerConfigurator->import(SetList::COMMON);
+    $containerConfigurator->import(SetList::CLEAN_CODE);
+    $containerConfigurator->import(SetList::PSR_12);
+    $containerConfigurator->import(SetList::DOCTRINE_ANNOTATIONS);
 
     $parameters->set(
         Option::SKIP,
@@ -83,7 +79,7 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $services->set(PhpdocSeparationFixer::class);
     $services->set(PhpdocAnnotationWithoutDotFixer::class);
     $services->set(PhpdocIndentFixer::class);
-    $services->set(PhpdocInlineTagFixer::class);
+    $services->set(PhpdocInlineTagNormalizerFixer::class);
     $services->set(PhpdocNoAccessFixer::class);
     $services->set(PhpdocNoEmptyReturnFixer::class);
     $services->set(PhpdocNoPackageFixer::class);

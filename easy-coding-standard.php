@@ -38,26 +38,22 @@ use PhpCsFixer\Fixer\ReturnNotation\ReturnAssignmentFixer;
 use PhpCsFixer\Fixer\Whitespace\BlankLineBeforeStatementFixer;
 use PhpCsFixer\Fixer\Whitespace\NoExtraBlankLinesFixer;
 use SlevomatCodingStandard\Sniffs\Whitespaces\DuplicateSpacesSniff;
-use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symplify\CodingStandard\Fixer\ArrayNotation\ArrayListItemNewlineFixer;
 use Symplify\CodingStandard\Fixer\ArrayNotation\ArrayOpenerAndCloserNewlineFixer;
+use Symplify\EasyCodingStandard\Config\ECSConfig;
 use Symplify\EasyCodingStandard\ValueObject\Option;
 use Symplify\EasyCodingStandard\ValueObject\Set\SetList;
 
-return static function (ContainerConfigurator $containerConfigurator): void {
-    $parameters = $containerConfigurator->parameters();
+return static function (ECSConfig $config): void {
+    $parameters = $config->parameters();
 
     $parameters->set(Option::CACHE_DIRECTORY, __DIR__ . '/.cache/ecs');
-    $parameters->set(Option::INDENTATION, '    ');
-    $parameters->set(Option::LINE_ENDING, "\n");
+    $config->indentation( '    ');
+    $config->lineEnding("\n");
 
-    $containerConfigurator->import(SetList::COMMON);
-    $containerConfigurator->import(SetList::CLEAN_CODE);
-    $containerConfigurator->import(SetList::PSR_12);
-    $containerConfigurator->import(SetList::DOCTRINE_ANNOTATIONS);
+    $config->sets([SetList::COMMON, SetList::CLEAN_CODE, SetList::PSR_12, SetList::DOCTRINE_ANNOTATIONS]);
 
-    $parameters->set(
-        Option::SKIP,
+    $config->skip(
         [
             AssignmentInConditionSniff::class => null,
             PhpUnitStrictFixer::class => null,
@@ -68,61 +64,66 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         ]
     );
 
-    $services = $containerConfigurator->services();
-
     // PHPDoc
-    $services->set(PhpdocAlignFixer::class)
-        ->call('configure', [['tags' => ['method', 'param', 'property', 'return', 'throws', 'type', 'var']]]);
+    $config->ruleWithConfiguration(PhpdocAlignFixer::class, ['tags' => ['method', 'param', 'property', 'return', 'throws', 'type', 'var']]);
 
-    $services->set(NoBlankLinesAfterPhpdocFixer::class);
-    $services->set(NoEmptyPhpdocFixer::class);
-    $services->set(PhpdocSeparationFixer::class);
-    $services->set(PhpdocAnnotationWithoutDotFixer::class);
-    $services->set(PhpdocIndentFixer::class);
-    $services->set(PhpdocInlineTagNormalizerFixer::class);
-    $services->set(PhpdocNoAccessFixer::class);
-    $services->set(PhpdocNoEmptyReturnFixer::class);
-    $services->set(PhpdocNoPackageFixer::class);
-    $services->set(PhpdocNoUselessInheritdocFixer::class);
-    $services->set(PhpdocReturnSelfReferenceFixer::class);
-    $services->set(PhpdocScalarFixer::class);
-    $services->set(PhpdocSingleLineVarSpacingFixer::class);
-    $services->set(PhpdocSummaryFixer::class);
-    $services->set(PhpdocTrimFixer::class);
-    $services->set(PhpdocTypesFixer::class);
-    $services->set(PhpdocVarWithoutNameFixer::class);
-    $services->set(PhpdocNoAliasTagFixer::class);
-    $services->set(NoSuperfluousPhpdocTagsFixer::class);
+    $config->rule(NoBlankLinesAfterPhpdocFixer::class);
+    $config->rule(NoEmptyPhpdocFixer::class);
+    $config->rule(PhpdocSeparationFixer::class);
+    $config->rule(PhpdocAnnotationWithoutDotFixer::class);
+    $config->rule(PhpdocIndentFixer::class);
+    $config->rule(PhpdocInlineTagNormalizerFixer::class);
+    $config->rule(PhpdocNoAccessFixer::class);
+    $config->rule(PhpdocNoEmptyReturnFixer::class);
+    $config->rule(PhpdocNoPackageFixer::class);
+    $config->rule(PhpdocNoUselessInheritdocFixer::class);
+    $config->rule(PhpdocReturnSelfReferenceFixer::class);
+    $config->rule(PhpdocScalarFixer::class);
+    $config->rule(PhpdocSingleLineVarSpacingFixer::class);
+    $config->rule(PhpdocSummaryFixer::class);
+    $config->rule(PhpdocTrimFixer::class);
+    $config->rule(PhpdocTypesFixer::class);
+    $config->rule(PhpdocVarWithoutNameFixer::class);
+    $config->rule(PhpdocNoAliasTagFixer::class);
+    $config->rule(NoSuperfluousPhpdocTagsFixer::class);
 
     // PHPUnit
-    $services->set(PhpUnitMethodCasingFixer::class)
-        ->call('configure', [['case' => 'snake_case']]);
+    $config->ruleWithConfiguration(PhpUnitMethodCasingFixer::class, ['case' => 'snake_case']);
 
     // Whitespace
-    $services->set(BlankLineBeforeStatementFixer::class)
-        ->call('configure', [['statements' => ['break', 'case', 'continue', 'do', 'for', 'foreach', 'if', 'return', 'switch', 'throw', 'try', 'while', 'yield']]]);
+    $config->ruleWithConfiguration(
+        BlankLineBeforeStatementFixer::class,
+        ['statements' => ['break', 'case', 'continue', 'do', 'for', 'foreach', 'if', 'return', 'switch', 'throw', 'try', 'while', 'yield']]
+    );
 
-    $services->set(NoExtraBlankLinesFixer::class)
-        ->call('configure', [['tokens' => ['break', 'case', 'continue', 'curly_brace_block', 'default', 'extra', 'parenthesis_brace_block', 'return', 'square_brace_block', 'switch', 'throw', 'use', 'use_trait']]]);
+    $config->ruleWithConfiguration(
+        NoExtraBlankLinesFixer::class,
+        ['tokens' => ['break', 'case', 'continue', 'curly_brace_block', 'default', 'extra', 'parenthesis_brace_block', 'return', 'square_brace_block', 'switch', 'throw', 'use', 'use_trait']]
+    );
 
-    $services->set(IncrementStyleFixer::class)
-        ->call('configure', [['style' => 'post']]);
+    $config->ruleWithConfiguration(
+        IncrementStyleFixer::class,
+        ['style' => 'post']
+    );
 
-    $services->set(DuplicateSpacesSniff::class)->property('ignoreSpacesInAnnotation', true);
-    $services->set(ArrayOpenerAndCloserNewlineFixer::class);
+    $config->ruleWithConfiguration(
+        DuplicateSpacesSniff::class, ['ignoreSpacesInAnnotation'=>true]
+    );
+
+    $config->rule(ArrayOpenerAndCloserNewlineFixer::class);
 
     // Operators
-    $services->set(NotOperatorWithSuccessorSpaceFixer::class);
+    $config->rule(NotOperatorWithSuccessorSpaceFixer::class);
 
     // Import
-    $services->set(FullyQualifiedStrictTypesFixer::class);
-    $services->set(NoUnusedImportsFixer::class);
-    $services->set(OrderedImportsFixer::class);
-    $services->set(GlobalNamespaceImportFixer::class)->call('configure', [['import_classes' => true]]);
+    $config->rule(FullyQualifiedStrictTypesFixer::class);
+    $config->rule(NoUnusedImportsFixer::class);
+    $config->rule(OrderedImportsFixer::class);
+    $config->ruleWithConfiguration(GlobalNamespaceImportFixer::class, ['import_classes' => true]);
 
     // Classes
-    $services->set(OrderedClassElementsFixer::class);
+    $config->rule(OrderedClassElementsFixer::class);
 
     // Custom
-    $services->set(MultilineLambdaFunctionArgumentsFixer::class);
+    $config->rule(MultilineLambdaFunctionArgumentsFixer::class);
 };

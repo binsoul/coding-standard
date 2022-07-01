@@ -14,9 +14,9 @@
     "require": {
         "php": "^7.3 || ^8.0",
         "friendsofphp/php-cs-fixer": "^2 || ^3",
-        "slevomat/coding-standard": "^7",
+        "slevomat/coding-standard": "^8",
         "squizlabs/php_codesniffer": "^3",
-        "symplify/easy-coding-standard": "^10"
+        "symplify/easy-coding-standard": "^11"
     },
     "require-dev": {
         "php": "^8.0",

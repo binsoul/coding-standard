@@ -48,6 +48,8 @@ return static function (ECSConfig $config): void {
     $parameters = $config->parameters();
 
     $parameters->set(Option::CACHE_DIRECTORY, __DIR__ . '/.cache/ecs');
+    $parameters->set(Option::PARALLEL, false);
+
     $config->indentation( '    ');
     $config->lineEnding("\n");
 

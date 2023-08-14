@@ -41,14 +41,11 @@ use SlevomatCodingStandard\Sniffs\Whitespaces\DuplicateSpacesSniff;
 use Symplify\CodingStandard\Fixer\ArrayNotation\ArrayListItemNewlineFixer;
 use Symplify\CodingStandard\Fixer\ArrayNotation\ArrayOpenerAndCloserNewlineFixer;
 use Symplify\EasyCodingStandard\Config\ECSConfig;
-use Symplify\EasyCodingStandard\ValueObject\Option;
 use Symplify\EasyCodingStandard\ValueObject\Set\SetList;
 
 return static function (ECSConfig $config): void {
-    $parameters = $config->parameters();
-
-    $parameters->set(Option::CACHE_DIRECTORY, __DIR__ . '/.cache/ecs');
-    $parameters->set(Option::PARALLEL, false);
+    $config->cacheDirectory(__DIR__ . '/.cache/ecs');
+    $config->disableParallel();
 
     $config->indentation( '    ');
     $config->lineEnding("\n");

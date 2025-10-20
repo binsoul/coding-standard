@@ -37,7 +37,6 @@ use PhpCsFixer\Fixer\PhpUnit\PhpUnitStrictFixer;
 use PhpCsFixer\Fixer\ReturnNotation\ReturnAssignmentFixer;
 use PhpCsFixer\Fixer\Whitespace\BlankLineBeforeStatementFixer;
 use PhpCsFixer\Fixer\Whitespace\NoExtraBlankLinesFixer;
-use SlevomatCodingStandard\Sniffs\Whitespaces\DuplicateSpacesSniff;
 use Symplify\CodingStandard\Fixer\ArrayNotation\ArrayListItemNewlineFixer;
 use Symplify\CodingStandard\Fixer\ArrayNotation\ArrayOpenerAndCloserNewlineFixer;
 use Symplify\EasyCodingStandard\Config\ECSConfig;
@@ -47,7 +46,7 @@ return static function (ECSConfig $config): void {
     $config->cacheDirectory(__DIR__ . '/.cache/ecs');
     $config->disableParallel();
 
-    $config->indentation( '    ');
+    $config->indentation('    ');
     $config->lineEnding("\n");
 
     $config->sets([SetList::COMMON, SetList::CLEAN_CODE, SetList::PSR_12, SetList::DOCTRINE_ANNOTATIONS]);
@@ -103,10 +102,6 @@ return static function (ECSConfig $config): void {
     $config->ruleWithConfiguration(
         IncrementStyleFixer::class,
         ['style' => 'post']
-    );
-
-    $config->ruleWithConfiguration(
-        DuplicateSpacesSniff::class, ['ignoreSpacesInAnnotation'=>true]
     );
 
     $config->rule(ArrayOpenerAndCloserNewlineFixer::class);

@@ -18,7 +18,7 @@
     "require-dev": {
         "php": ">=8.3",
         "phpro/grumphp-shim": "^2",
-        "phpunit/phpunit": "^10",
+        "phpunit/phpunit": "^12",
         "phpstan/phpstan": "^2",
         "roave/security-advisories": "dev-latest"
     },
